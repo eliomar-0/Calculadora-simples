@@ -104,11 +104,15 @@ zero.addEventListener("click", () => {
 comma.addEventListener("click", () => {
     if(count == 0){
         if(first_value.textContent != ""){
-            first_value.innerHTML = `${first_value.textContent},`
+            if(!first_value.textContent.includes(",")){
+                first_value.innerHTML = `${first_value.textContent},`
+            }
         }
     }else{
         if(second_value.textContent != ""){
-            second_value.innerHTML = `${second_value.textContent},`
+            if(!second_value.textContent.includes(",")){
+                second_value.innerHTML = `${second_value.textContent},`
+            }
         }
     }
 })
@@ -119,23 +123,37 @@ function calcular(type){
     valor2 = parseFloat(second_value.textContent.replace(",", "."))
     if(type == "+"){
         let result = valor1 + valor2
-        animateValue()
+        first_value.textContent = result.toString().replace(".", ",")
+        second_value.textContent = ""
+        option.textContent = ""
+        count = 0
     } else if(type == "/"){
         let result = valor1 / valor2
+        first_value.textContent = result.toString().replace(".", ",")
+        second_value.textContent = ""
+        option.textContent = ""
+        count = 0
     } else if(type == "-"){
         let result = valor1 - valor2
+        first_value.textContent = result.toString().replace(".", ",")
+        second_value.textContent = ""
+        option.textContent = ""
+        count = 0
     } else {
         let result = valor1 - valor2
+        first_value.textContent = result.toString().replace(".", ",")
+        second_value.textContent = ""
+        option.textContent = ""
+        count = 0
     }
 }
 
-
-function animateValue(){
-    first_value.style.fontSize = "15px"
-    option.style.fontSize = "15px"
-    second_value.style.fontSize = "15px"
-
-}
+// faz animação para mostrar o resultado
+// function animateValue(){
+//     first_value.style.fontSize = "15px"
+//     option.style.fontSize = "15px"
+//     second_value.style.fontSize = "15px"
+// }
 
 equal.addEventListener("click", () => {
     if(first_value.textContent != "" && second_value.textContent != ""){
@@ -150,29 +168,36 @@ equal.addEventListener("click", () => {
 })
 
 // define qual tipo de operação vai ser feita
-
 multiply.addEventListener("click", () => {
     if(first_value.textContent != ""){
-        option.innerHTML = "x"
-        count = 1
+        if(first_value.textContent[first_value.textContent.length - 1] != ","){
+            option.innerHTML = "x"
+            count = 1
+        }  
     }
 })
 sub.addEventListener("click", () => {
     if(first_value.textContent != ""){
-        option.innerHTML = "-"
-        count = 1
+        if(first_value.textContent[first_value.textContent.length - 1] != ","){
+            option.innerHTML = "-"
+            count = 1
+        }
     }
 })
 more.addEventListener("click", () => {
     if(first_value.textContent != ""){
-        option.innerHTML = "+"
-        count = 1
+        if(first_value.textContent[first_value.textContent.length - 1] != ","){
+            option.innerHTML = "+"
+            count = 1
+        }
     }
 })
 divide.addEventListener("click", () => {
     if(first_value.textContent != ""){
-        option.innerHTML = "/"
-        count = 1
+        if(first_value.textContent[first_value.textContent.length - 1] != ","){
+            option.innerHTML = "/"
+            count = 1
+        }
     }
 })
 
